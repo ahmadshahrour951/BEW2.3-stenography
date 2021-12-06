@@ -8,6 +8,12 @@ Deliverables:
     2. Decoded sample image with secret text revealed
     3. Your own image encoded with hidden secret text!
 """
+
+from PIL import Image
+from PIL import ImageDraw, ImageFont
+from PIL.ImagePalette import raw
+
+
 def decode_image(path_to_png):
     """
     Decode image from path
