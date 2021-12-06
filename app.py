@@ -61,3 +61,23 @@ def encode_image(path_to_png, secret_message):
               secret_message, font=font)
 
     text_img.save("raw_text.png")
+
+    for x in range(x_size):
+        for y in range(y_size):
+
+            raw_rgb = base_image.getpixel((x, y))
+            red = raw_rgb[0]
+            binary = bin(red)
+            binary_list = list(binary)
+            binary_len = len(binary_list)
+
+            if text_img.getpixel((x, y)) == (255, 255, 255):
+                binary_list[binary_len - 1] = "0"
+            else:
+                binary_list[binary_len - 1] = "1"
+
+            new_red = int("".join(binary_list), 2)
+            new_rgb = (new_red, raw_rgb[1], raw_rgb[2])
+            base_image.putpixel((x, y), new_rgb)
+
+    base_image.save("encoded.png", "png")
