@@ -48,3 +48,16 @@ def encode_image(path_to_png, secret_message):
     """
     Encode secret text to image from path
     """
+    base_image = Image.open(path_to_png)
+    x_size, y_size = base_image.size
+
+    text_img = Image.new(mode='RGB', size=(x_size, y_size), color=(0, 0, 0))
+    draw = ImageDraw.Draw(text_img)
+
+    # Font Source: https://stackoverflow.com/a/59160253/7897036
+    relativeness = 25
+    font = ImageFont.truetype("Times New Roman.ttf", y_size // relativeness)
+    draw.text((x_size // relativeness, y_size // relativeness),
+              secret_message, font=font)
+
+    text_img.save("raw_text.png")
