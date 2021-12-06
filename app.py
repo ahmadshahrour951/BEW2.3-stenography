@@ -81,3 +81,7 @@ def encode_image(path_to_png, secret_message):
             base_image.putpixel((x, y), new_rgb)
 
     base_image.save("encoded.png", "png")
+
+
+encode_image("baby.jpg", "I am a cuter baby than you ever were lol")
+decode_image("encoded.png")
